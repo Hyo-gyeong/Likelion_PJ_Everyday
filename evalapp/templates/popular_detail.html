@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+{{popular_detail.title}}
+{{popular_detail.pub_date}}
+{{popular_detail.score}}
+{{popular_detail.field}}
+{{popular_detail.body}}
+
+{% for p in popular_detail.comments.all %}
+<div class="comment">
+    <div class="date">{{ p.created_date }}</div>
+    <p>{{ p.text|linebreaks }}</p>
+</div>
+{% empty %}
+    <div class="comment-list">
+        <p>작성된 댓글이 없습니다!</p>
+    </div>
+{% endfor %}
+
+<a href="{%  url 'home' %}">뒤로</a>
+
+{% endblock %}

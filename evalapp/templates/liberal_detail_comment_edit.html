@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+{% block content %}
+<form method="POST" >
+    {% csrf_token %}
+    <input type="text" name='text' value="{{l_comment.text}}">
+    <input type="submit" value="수정완료">
+</form>
+{% endblock %}

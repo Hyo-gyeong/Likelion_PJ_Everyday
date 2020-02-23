@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+<h3>교양과목</h3>
+<a href="{% url 'liberal_new' %}">글쓰기</a><br><br>
+{% for b in posts %}
+    {{b.title}}<br>
+    {{b.pub_date}}<br>
+    {{b.field}}&emsp;{{b.score}}<br>
+    {{b.summary}}<br><br>
+    <a href="{% url 'liberal_detail' b.id %}">더보기</a>
+{% endfor %}
+
+<div class="blog-footer">
+    {% if posts.has_previous %}
+        <a href="?page=1">First</a>
+        <a href="?page={{posts.previous_page_number}}">Previous</a>
+    {% endif %}
+
+    <span>{{posts.number}}</span>
+    <span> of </span>
+    <span>{{posts.paginator.num_pages}}</span>
+
+    {% if posts.has_next %}
+    <a href="?page={{posts.next_page_number}}">Next</a>
+    <a href="?page={{posts.paginator.num_pages}}">Last</a>
+    {% endif %}
+</div>
+{% endblock %}

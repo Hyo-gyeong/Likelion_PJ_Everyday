@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+{{new_detail.title}}
+{{new_detail.pub_date}}
+{{new_detail.score}}
+{{new_detail.field}}
+{{new_detail.body}}
+
+{% for vv in new_detail.comments.all %}
+<div class="comment">
+    <div class="date">{{ vv.created_date }}</div>
+    <p>{{ vv.text|linebreaks }}</p>
+</div>
+{% empty %}
+    <div class="comment-list">
+        <p>작성된 댓글이 없습니다!</p>
+    </div>
+{% endfor %}
+
+<a href="{%  url 'home' %}">뒤로</a>
+
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{{february_detail.title}}
+{{february_detail.pub_date}}
+{{february_detail.field}}
+{{february_detail.body}}
+<br><br>
+
+{% for vv in february_detail.comments.all %}
+<div class="comment">
+    <div class="date">{{ vv.created_date }}</div>
+    <p>{{ vv.text|linebreaks }}</p>
+</div>
+{% empty %}
+    <div class="comment-list">
+        <p>작성된 댓글이 없습니다!</p>
+    </div>
+{% endfor %}
+
+{% endblock%}

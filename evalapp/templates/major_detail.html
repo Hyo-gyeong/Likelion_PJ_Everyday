@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block content %}
+<head>
+    <style>
+        .major{
+            font-weight: bold;
+            font-size:20px;
+        }
+    </style>
+</head>
+<h1>강의평가 -> 전공</h1>
+{{major_detail.title}}
+{{major_detail.pub_date}}
+{{major_detail.field}}
+{{major_detail.score}}
+{{major_detail.body}}<br>
+<a href="{% url 'major_delete' major_detail.id %}">삭제</a>
+<a href="{% url 'major_edit' major_detail.id %}">수정</a>
+
+<form action="{% url 'm_comment_create' major_detail.id %}" method=POST>
+    {% csrf_token %}
+    <input type="text" name="text">
+    <button type="submit">제출</button>
+</form>
+
+{% for comment in major_detail.comments.all %}
+<div class="comment">
+    <div class="date">{{ comment.created_date }}</div>
+    <p>{{ comment.text|linebreaks }}</p>
+    <a href="{% url 'm_comment_delete' major_detail.id comment.id %}">삭제</a>
+    <a href="{% url 'm_comment_edit' major_detail.id comment.id %}">수정</a>
+</div>
+{% empty %}
+    <div class="comment-list">
+        <p>작성된 댓글이 없습니다!</p>
+    </div>
+{% endfor %}
+
+{% endblock %}

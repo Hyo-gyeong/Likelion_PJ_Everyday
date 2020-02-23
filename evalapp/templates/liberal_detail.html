@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>강의평가 -> 교양</h1>
+{{liberal_detail.title}}
+{{liberal_detail.pub_date}}
+{{liberal_detail.field}}
+{{liberal_detail.score}}
+{{liberal_detail.body}}<br>
+<a href="{% url 'liberal_delete' liberal_detail.id %}">삭제</a>
+<a href="{% url 'liberal_edit' liberal_detail.id %}">수정</a>
+
+<form action="{% url 'l_comment_create' liberal_detail.id %}" method=POST>
+    {% csrf_token %}
+    <input type="text" name="text">
+    <button type="submit">제출</button>
+</form>
+
+{% for c in liberal_detail.comments.all %}
+<div class="comment">
+    <div class="date">{{ c.created_date }}</div>
+    <p>{{ c.text|linebreaks }}</p>
+    <a href="{% url 'l_comment_delete' liberal_detail.id c.id %}">삭제</a>
+    <a href="{% url 'l_comment_edit' liberal_detail.id c.id %}">수정</a>
+</div>
+{% empty %}
+<div class="comment-list">
+    <p>작성된 댓글이 없습니다!</p>
+</div>
+{% endfor %}
+
+{% endblock %}

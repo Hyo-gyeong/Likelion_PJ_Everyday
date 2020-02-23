@@ -1,0 +1,1 @@
+web: gunicorn lecteval.wsgi --log-file -

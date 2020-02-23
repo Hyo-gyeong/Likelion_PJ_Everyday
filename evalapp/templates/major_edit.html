@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+<head>
+    <style>
+        .major{
+            font-weight: bold;
+            font-size:20px;
+        }
+    </style>
+</head>
+<form method="POST" >
+    {% csrf_token %}
+    {{major_form.as_p}}
+    <input type="submit" value="수정완료">
+</form>
+
+{% endblock %}
