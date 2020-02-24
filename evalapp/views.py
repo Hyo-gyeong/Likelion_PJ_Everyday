@@ -337,11 +337,11 @@ def February(request):
     page = request.GET.get('page')
     posts = paginator.get_page(page) 
 
-    return render(request, 'february.html', {'february_list':february_list, 'posts':posts})
+    return render(request, 'February.html', {'february_list':february_list, 'posts':posts})
 
 def February_detail(request, february_id):
     february_detail = get_object_or_404(List, pk = february_id)
-    return render(request, 'february_detail.html', {'february_detail':february_detail})
+    return render(request, 'February_detail.html', {'february_detail':february_detail})
 
 def empty(request):
     return render(request, 'empty.html')
