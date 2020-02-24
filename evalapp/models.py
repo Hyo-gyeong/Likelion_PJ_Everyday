@@ -24,7 +24,7 @@ class List(models.Model):
         return self.title
 
     def short(self):
-        return self.body[:25]
+        return self.body[:20]
         
     def summary(self):
         return self.body[:100]

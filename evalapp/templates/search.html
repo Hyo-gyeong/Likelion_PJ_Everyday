@@ -1,5 +1,15 @@
 {% extends 'base.html' %}
 {% block content %}
+<head>
+  <style>
+    .table-head{
+      width:30%;
+    }
+    .table-body{
+      width:70%;
+    }
+  </style>
+</head>
 
     {% if status %}
     <table class="table">
@@ -13,10 +23,10 @@
     {% for blog in status %} 
     <tbody>
         <tr>
-          <th scope="row"><a href="{% url 'detail' blog.id %}" style="color:plum; font-size:20px;">{{ blog.title }}</a><br><br> </th>
-          <td>{{blog.body}}</td>
+          <th class="table-head"><a href="{% url 'detail' blog.id %}" style="color:plum; font-size:20px;">{{ blog.title }}</a><br><br> </th>
+          <td class="table-body"><a href="{% url 'detail' blog.id %}" style="color:plum; font-size:20px;">{{blog.body}}</a></td>
         </tr>
-</tbody>
+    </tbody>
     {% endfor %}
     {% endif %}
     </table>

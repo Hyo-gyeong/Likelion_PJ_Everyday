@@ -1,5 +1,15 @@
 {% extends 'base.html' %}
 {% block content %}
+
+<head>
+    <style>
+        .liberal{
+            font-weight: bold;
+            font-size:20px;
+        }
+    </style>
+</head>
+
 <form method="POST" >
     {% csrf_token %}
     {{liberal_form.as_p}}
